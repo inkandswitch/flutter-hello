@@ -3,21 +3,21 @@ import 'package:painter/painter.dart';
 import 'dart:typed_data';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Hello Flutter',
-      home: new ExamplePage(),
+      home: ExamplePage(),
     );
   }
 }
 
 class ExamplePage extends StatefulWidget {
   @override
-  _ExamplePageState createState() => new _ExamplePageState();
+  _ExamplePageState createState() => _ExamplePageState();
 }
 
 class _ExamplePageState extends State<ExamplePage> {
@@ -32,7 +32,7 @@ class _ExamplePageState extends State<ExamplePage> {
   }
 
   PainterController _newController() {
-    PainterController controller = new PainterController();
+    PainterController controller = PainterController();
 
     controller.thickness = 2.0;
 
@@ -45,8 +45,8 @@ class _ExamplePageState extends State<ExamplePage> {
     List<Widget> actions;
     if (_finished) {
       actions = [
-        new IconButton(
-          icon: new Icon(Icons.content_copy),
+        IconButton(
+          icon: const Icon(Icons.content_copy),
           tooltip: 'New Painting',
           onPressed: () => setState(() {
                 _finished = false;
@@ -56,28 +56,28 @@ class _ExamplePageState extends State<ExamplePage> {
       ];
     } else {
       actions = [
-        new IconButton(
-            icon: new Icon(Icons.undo),
+        IconButton(
+            icon: const Icon(Icons.undo),
             tooltip: 'Undo',
             onPressed: _controller.undo),
-        new IconButton(
-            icon: new Icon(Icons.delete),
+        IconButton(
+            icon: const Icon(Icons.delete),
             tooltip: 'Clear',
             onPressed: _controller.clear),
-        new IconButton(
-            icon: new Icon(Icons.check),
+        IconButton(
+            icon: const Icon(Icons.check),
             onPressed: () => _show(_controller.finish(), context)),
       ];
     }
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
           title: const Text('Hello Flutter'),
           actions: actions,
-          bottom: new PreferredSize(
-            child: new DrawBar(_controller),
-            preferredSize: new Size(MediaQuery.of(context).size.width, 30.0),
+          bottom: PreferredSize(
+            child: DrawBar(_controller),
+            preferredSize: Size(MediaQuery.of(context).size.width, 30.0),
           )),
-      body: new Center(child: new Painter(_controller)),
+      body: Center(child: Painter(_controller)),
     );
   }
 
@@ -87,32 +87,31 @@ class _ExamplePageState extends State<ExamplePage> {
     });
     Navigator
         .of(context)
-        .push(new MaterialPageRoute(builder: (BuildContext context) {
-      return new Scaffold(
-        appBar: new AppBar(
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
           title: const Text('View your image'),
         ),
-        body: new Container(
+        body: Container(
             alignment: Alignment.center,
-            child: new FutureBuilder<Uint8List>(
+            child: FutureBuilder<Uint8List>(
               future: picture.toPNG(),
               builder:
                   (BuildContext context, AsyncSnapshot<Uint8List> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      return new Text('Error: ${snapshot.error}');
+                      return Text('Error: ${snapshot.error}');
                     } else {
                       return Image.memory(snapshot.data);
                     }
                     break;
                   default:
-                    return new Container(
-                        child: new FractionallySizedBox(
+                    return Container(
+                        child: FractionallySizedBox(
                       widthFactor: 0.1,
-                      child: new AspectRatio(
-                          aspectRatio: 1.0,
-                          child: new CircularProgressIndicator()),
+                      child: const AspectRatio(
+                          aspectRatio: 1.0, child: CircularProgressIndicator()),
                       alignment: Alignment.center,
                     ));
                 }
@@ -130,20 +129,19 @@ class DrawBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
         padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-        child: new StatefulBuilder(
+        child: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
-          return new Row(
+          return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new Center(
-                    child: new Text(
-                        _controller.thickness.toStringAsPrecision(2),
+                Center(
+                    child: Text(_controller.thickness.toStringAsPrecision(2),
                         style: const TextStyle(color: Colors.white))),
-                new Flexible(
-                    child: new Container(
-                        child: new Slider(
+                Flexible(
+                    child: Container(
+                        child: Slider(
                   value: _controller.thickness,
                   onChanged: (double value) => setState(() {
                         _controller.thickness = value;
@@ -152,8 +150,8 @@ class DrawBar extends StatelessWidget {
                   max: 20.0,
                   activeColor: Colors.white,
                 ))),
-                new ColorPickerButton(_controller, false),
-                new ColorPickerButton(_controller, true),
+                ColorPickerButton(_controller, false),
+                ColorPickerButton(_controller, true),
               ]);
         }));
   }
@@ -166,14 +164,14 @@ class ColorPickerButton extends StatefulWidget {
   ColorPickerButton(this._controller, this._background);
 
   @override
-  _ColorPickerButtonState createState() => new _ColorPickerButtonState();
+  _ColorPickerButtonState createState() => _ColorPickerButtonState();
 }
 
 class _ColorPickerButtonState extends State<ColorPickerButton> {
   @override
   Widget build(BuildContext context) {
-    return new IconButton(
-        icon: new Icon(_iconData, color: _color),
+    return IconButton(
+        icon: Icon(_iconData, color: _color),
         tooltip: widget._background
             ? 'Change background color'
             : 'Change draw color',
@@ -184,16 +182,16 @@ class _ColorPickerButtonState extends State<ColorPickerButton> {
     Color pickerColor = _color;
     Navigator
         .of(context)
-        .push(new MaterialPageRoute(
+        .push(MaterialPageRoute(
             fullscreenDialog: true,
             builder: (BuildContext context) {
-              return new Scaffold(
-                  appBar: new AppBar(
+              return Scaffold(
+                  appBar: AppBar(
                     title: const Text('Pick color'),
                   ),
-                  body: new Container(
+                  body: Container(
                       alignment: Alignment.center,
-                      child: new ColorPicker(
+                      child: ColorPicker(
                         pickerColor: pickerColor,
                         onColorChanged: (Color c) => pickerColor = c,
                       )));
