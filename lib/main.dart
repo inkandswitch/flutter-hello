@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:painter/painter.dart';
+import 'painter.dart';
 import 'dart:typed_data';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
