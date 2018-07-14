@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hello Flutter',
       home: ExamplePage(),
+      showPerformanceOverlay: true,
     );
   }
 }
