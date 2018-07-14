@@ -19,5 +19,10 @@ See the full instructions [here][flutter-install].
 - `open -a Simulator` if you want to use the simulator
 - `flutter run`
 
+## Running the app on macOS
+
+- `open macos/MacRunner.xcodeproj`
+- Click the play button
+
 [flutter-sdk]: https://flutter.io/sdk-archive/#macos
 [flutter-install]: https://flutter.io/setup-macos/

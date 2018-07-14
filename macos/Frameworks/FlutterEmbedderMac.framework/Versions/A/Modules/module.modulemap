@@ -1,0 +1,6 @@
+framework module FlutterEmbedderMac {
+  umbrella header "FlutterEmbedderMac.h"
+
+  export *
+  module * { export * }
+}
