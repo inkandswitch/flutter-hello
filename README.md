@@ -14,10 +14,13 @@ See the full instructions [here][flutter-install].
 - `brew install ideviceinstaller ios-deploy cocoapods`
 - `pod setup`
 
-## Running the app
+## Running the app (debug)
 
-- `open -a Simulator` if you want to use the simulator
 - `flutter run`
+
+## Running the app (release)
+
+- `flutter run --release`
 
 ## Running the app on macOS
 

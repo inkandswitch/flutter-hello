@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = EEE2945F20F94A8A0064C378 /* Build configuration list for PBXAggregateTarget "Build Flutter Bundle" */;
 			buildPhases = (
-				EEE2946220F94A8E0064C378 /* ShellScript */,
+				EEE2946220F94A8E0064C378 /* Run Script */,
 			);
 			dependencies = (
 			);
@@ -194,13 +194,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EEE2946220F94A8E0064C378 /* ShellScript */ = {
+		EEE2946220F94A8E0064C378 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
