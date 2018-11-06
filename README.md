@@ -2,6 +2,8 @@
 
 A sample drawing app for testing pen-input with flutter.
 
+![screenshot](https://raw.githubusercontent.com/inkandswitch/flutter-hello/master/screenshot.png)
+
 ## Installation
 
 See the full instructions [here][flutter-install].
